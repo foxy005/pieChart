@@ -29,9 +29,9 @@ export class ApprovalStatusComponent implements OnInit {
         count[element] = (count[element] || 0)+1
       });
       // console.log(count)
-      count = Object.entries(count)
-      // console.log(count)
-      const loc = count.map(([x,y])=>({x,y}))
+      let countArray = Object.entries(count)
+      console.log(countArray)
+      const loc :any= countArray.map(([x,y])=>({x,y}))
       // console.log(loc)
 
       let colors = d3.scaleOrdinal(d3.schemeCategory10)
@@ -42,7 +42,7 @@ export class ApprovalStatusComponent implements OnInit {
                 .attr('height',500)
                 
 
-      let pieData = d3.pie().sort(null).value((d,i)=>{
+      let pieData:any = d3.pie().sort(null).value((d:any,i)=>{
         return d.y
       })(loc)
 
@@ -59,7 +59,10 @@ export class ApprovalStatusComponent implements OnInit {
                         .selectAll('path')
                         .data(pieData)
 
-      sections.enter().append('path').attr('d',segments).attr('fill',(d)=>colors(d.index))
+      sections.enter().append('path').attr('d',segments).attr('fill',
+                                          function(d:any){
+                                            return colors(d.index)
+                                          })
 
       var legends = svg.append('g').attr('transform','translate(500,300)')
                           .selectAll('.legends').data(pieData)
@@ -72,8 +75,8 @@ export class ApprovalStatusComponent implements OnInit {
       legend.append('rect')
             .attr('width',20)
             .attr('height',20)
-            .attr('fill',(d)=>colors(d.index))
-      legend.append('text').text((d)=>d.data.x).attr('fill',(d)=>colors(d.index))
+            .attr('fill',(d:any)=>colors(d.index))
+      legend.append('text').text((d:any)=>d.data.x).attr('fill',(d:any)=>colors(d.index))
                         .attr('x',40)
                         .attr('y',20)
             

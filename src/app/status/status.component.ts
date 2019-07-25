@@ -43,13 +43,13 @@ export class StatusComponent implements OnInit {
                     .attr('height',400)
                     .style('background','grey')
 
-          let piData = d3.pie().sort(null).value(function(d,i){
+          let piData = d3.pie().sort(null).value(function(d:any,i){
             return d.count
           })(this.statusArray)
 
           console.log(piData)
 
-          var segments = d3.arc()
+          var segments:any = d3.arc()
                             .innerRadius(0)
                             .outerRadius(150)
                             .padAngle(.5)
@@ -60,14 +60,14 @@ export class StatusComponent implements OnInit {
                             .attr('transform','translate(200,200)')
                             .selectAll('path')
                             .data(piData)
-        sections.enter().append('path').attr("d",segments).attr('fill',(d)=>colors(d.data.count))
+        sections.enter().append('path').attr("d",segments).attr('fill',(d:any)=>colors(d.data.count))
 
         var content = d3.select('g')
                         .selectAll('text')
                         .data(piData)
                         .enter()
                         .append('text')
-                        .each(function(d){
+                        .each(function(d:any){
                           let center = segments.centroid(d)
                           d3.select(this)
                             .attr('x',center[0])

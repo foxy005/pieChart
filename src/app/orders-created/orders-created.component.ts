@@ -50,7 +50,7 @@ export class OrdersCreatedComponent implements OnInit {
                 
                 
 
-      let pieData = d3.pie().sort(null).value((d,i)=>{
+      let pieData = d3.pie().sort(null).value((d:any,i)=>{
         return d.y
       })(count)
 
@@ -67,14 +67,14 @@ export class OrdersCreatedComponent implements OnInit {
                         .selectAll('path')
                         .data(pieData)
 
-      sections.enter().append('path').attr('d',segments).attr('fill',(d)=>colors(d.index))
+      sections.enter().append('path').attr('d',segments).attr('fill',(d:any)=>colors(d.index))
 
       var content = d3.select('g')
                         .selectAll('text')
                         .data(pieData)
                         .enter()
                         .append('text')
-                        .each(function(d){
+                        .each(function(d:any){
                           let center = segments.centroid(d)
                           d3.select(this)
                             .attr('x',center[0])
@@ -95,8 +95,8 @@ export class OrdersCreatedComponent implements OnInit {
       legend.append('rect')
             .attr('width',20)
             .attr('height',20)
-            .attr('fill',(d)=>colors(d.index))
-      legend.append('text').text((d)=>d.data.x).attr('fill',(d)=>colors(d.index))
+            .attr('fill',(d:any)=>colors(d.index))
+      legend.append('text').text((d:any)=>d.data.x).attr('fill',(d:any)=>colors(d.index))
                         .attr('x',30)
                         .attr('y',20)
             
