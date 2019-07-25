@@ -59,7 +59,7 @@ export class OrdersCreatedComponent implements OnInit {
 
       console.log(pieData)
 
-      let segments = d3.arc()
+      let segments:any = d3.arc()
                         .innerRadius(0)
                         .outerRadius(150)
                         .padAngle(.5)
