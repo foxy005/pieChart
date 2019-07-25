@@ -35,8 +35,11 @@ export class OrdersCreatedComponent implements OnInit {
       });
 
       // console.log(count)
+      let countArray = Object.entries(count)
+      console.log(countArray)
+      const loc :any= countArray.map(([x,y])=>({x,y}))
 
-      count = Object.entries(count).map(([x,y])=>({x,y}))
+      // count = Object.entries(count).map(([x,y])=>({x,y}))
       // console.log(count)
       // const loc = count.map(([x,y])=>({x,y}))
       // console.log(loc)
@@ -52,7 +55,7 @@ export class OrdersCreatedComponent implements OnInit {
 
       let pieData = d3.pie().sort(null).value((d:any,i)=>{
         return d.y
-      })(count)
+      })(loc)
 
       console.log(pieData)
 
